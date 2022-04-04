@@ -8,6 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VuePageTitle from 'vue-page-title'
 
 import './assets/styles/index.scss'
+import 'flowbite'
+
+if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+  document.documentElement.classList.add('dark')
+} else {
+  document.documentElement.classList.remove('dark')
+}
 
 library.add(faHome)
 

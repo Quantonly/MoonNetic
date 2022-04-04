@@ -3,7 +3,10 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   purge: [],
   presets: [],
-  darkMode: false,
+  darkMode: 'class',
+  content: [
+    "./node_modules/flowbite/**/*.js"
+  ],
   theme: {
     screens: {
       sm: '640px',
@@ -155,6 +158,7 @@ module.exports = {
     borderWidth: {
       DEFAULT: '1px',
       0: '0px',
+      1: '1px',
       2: '2px',
       4: '4px',
       8: '8px'
@@ -965,5 +969,7 @@ module.exports = {
     wordBreak: ['responsive'],
     zIndex: ['responsive', 'focus-within', 'focus']
   },
-  plugins: []
+  plugins: [
+    require('flowbite/plugin')
+  ]
 }
