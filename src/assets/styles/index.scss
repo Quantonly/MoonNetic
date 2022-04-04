@@ -6,4 +6,8 @@ html, body {
 
 @import "tailwindcss/components";
 
+.darkmode-animation {
+  @apply transition-colors duration-500;
+}
+
 @import "tailwindcss/utilities";

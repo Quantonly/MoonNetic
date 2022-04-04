@@ -1,11 +1,11 @@
 <template>
-  <div id="app" class="flex flex-col min-h-screen">
+  <div id="app" class="darkmode-animation flex flex-col min-h-screen bg-white dark:bg-darkmode-medium">
     <div id="nav">
-      <Navigation class="transition-colors duration-300 h-full"/>
+      <Navigation class="darkmode-animation h-full"/>
     </div>
-    <router-view class="transition-colors duration-300 mb-auto"/>
+    <router-view class="darkmode-animation mb-auto"/>
     <div id="footer">
-      <Footer class="transition-colors duration-300 h-full"/>
+      <Footer class="darkmode-animation h-full"/>
     </div>
   </div>
 </template>

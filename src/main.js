@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faHome } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VuePageTitle from 'vue-page-title'
 
@@ -16,7 +16,7 @@ if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.match
   document.documentElement.classList.remove('dark')
 }
 
-library.add(faHome)
+library.add(faHome, faCaretDown)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
