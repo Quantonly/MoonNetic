@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store/index.js'
 
 Vue.use(VueRouter)
 
@@ -73,6 +74,18 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.meta?.login === true && !store.getters.accessToken) {
+    return next('/login')
+  }
+
+  if ((to.path === '/login' || to.path === '/register' || to.path === '/forgot-password') && store.getters.accessToken) {
+    return next('/dashboard')
+  }
+
+  next()
 })
 
 export default router

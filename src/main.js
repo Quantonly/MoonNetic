@@ -30,6 +30,10 @@ Vue.use(Vuelidate)
 Vue.config.productionTip = false
 
 async function main () {
+  if (store.getters.accessToken && !store.getters.user) {
+    await store.dispatch('getUser')
+  }
+
   new Vue({
     router,
     store,
