@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import Vuelidate from 'vuelidate'
 import router from './router'
 import store from './store'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -23,6 +24,8 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(VuePageTitle, {
   suffix: '- MoonNetic'
 })
+
+Vue.use(Vuelidate)
 
 Vue.config.productionTip = false
 

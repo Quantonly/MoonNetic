@@ -78,7 +78,13 @@
 
 <script>
 export default {
-  name: 'NotFound'
+  name: 'NotFound',
+  mounted () {
+    document.documentElement.style.overflow = 'hidden'
+  },
+  beforeDestroy () {
+    document.documentElement.style.overflow = 'visible'
+  }
 }
 </script>
 

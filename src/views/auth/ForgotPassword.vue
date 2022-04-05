@@ -1,7 +1,7 @@
 <template>
   <div class="w-full max-w-sm m-auto">
     <form class="darkmode-animation bg-white shadow-2xl rounded px-8 pt-6 pb-8 mb-4 dark:bg-darkmode-light">
-      <p class="darkmode-animation font-bold text-3xl mb-10 text-center dark:text-white">Login</p>
+      <p class="darkmode-animation font-bold text-3xl mb-10 text-center dark:text-white">Forgot Password?</p>
       <div class="mb-4">
         <label class="darkmode-animation block text-gray-700 text-sm font-bold mb-2 dark:text-white" for="email">
           Email
@@ -10,28 +10,14 @@
         <p v-if="!$v.email.required && $v.email.$dirty" class="text-red-500 text-xs italic mt-2">Field is required</p>
         <p v-if="!$v.email.email && $v.email.$dirty" class="text-red-500 text-xs italic mt-2">This is not a valid Email</p>
       </div>
-      <div class="mb-6">
-        <label class="darkmode-animation block text-gray-700 text-sm font-bold mb-2 dark:text-white" for="password">
-          Password
-        </label>
-        <input v-model.trim="$v.password.$model" :class="{ 'border-red-500': $v.password.$error }" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="**********">
-        <p v-if="!$v.password.required && $v.password.$dirty" class="text-red-500 text-xs italic mt-2">Field is required</p>
-      </div>
       <div class="flex items-center justify-between">
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-          Sign In
+          Submit
         </button>
-        <router-link to="/forgot-password" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-          Forgot Password?
+        <router-link to="/login" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+          Login
         </router-link>
       </div>
-      <hr class="mt-5">
-      <p class="darkmode-animation dark:text-white mt-5 text-center">
-        Don't have an account?
-        <router-link to="/register" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-          Register
-        </router-link>
-      </p>
     </form>
   </div>
 </template>
@@ -40,20 +26,16 @@
 import { required, email } from 'vuelidate/lib/validators'
 
 export default {
-  title: 'Login',
+  title: 'ForgotPassword',
   data () {
     return {
-      email: '',
-      password: ''
+      email: ''
     }
   },
   validations: {
     email: {
       required,
       email
-    },
-    password: {
-      required
     }
   }
 }
