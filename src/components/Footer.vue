@@ -1,7 +1,7 @@
 <template>
   <footer class="p-4 bg-white sm:p-6 dark:bg-darkmode-dark shadow">
     <div class="container mx-auto sm:flex sm:items-center sm:justify-between">
-      <span class="darkmode-animation text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <router-link to="/home" class="hover:underline">MoonNetic™</router-link>. All Rights Reserved.
+      <span class="darkmode-animation text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <router-link to="/home" class="hover:underline">MoonNetic</router-link>. All Rights Reserved.
       </span>
       <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
         <router-link to="/home" class="darkmode-animation text-gray-500 hover:text-gray-900 dark:hover:text-white">
