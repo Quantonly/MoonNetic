@@ -18,6 +18,12 @@ const routes = [
     meta: { login: true }
   },
   {
+    path: '/dashboard/file-manager',
+    alias: '/',
+    component: () => import('@/views/dashboard/FileManager'),
+    meta: { login: true }
+  },
+  {
     path: '/home',
     alias: '/',
     component: () => import('@/views/Home'),

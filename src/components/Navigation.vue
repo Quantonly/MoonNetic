@@ -91,6 +91,14 @@ export default {
           targetEl.classList.remove('block')
         }
       }
+      if (document.getElementById('create-dropdown-area')) {
+        trigger = document.getElementById('create-dropdown-area')
+        if (trigger !== event.target && !trigger.contains(event.target)) {
+          const targetEl = document.getElementById('create-dropdown')
+          targetEl.classList.add('hidden')
+          targetEl.classList.remove('block')
+        }
+      }
     }
   },
   methods: {
@@ -106,11 +114,9 @@ export default {
     },
     darkmode (e) {
       if (e.target.checked) {
-        localStorage.theme = 'dark'
-        document.documentElement.classList.add('dark')
+        this.$store.dispatch('themeToggle', { theme: 'dark' })
       } else {
-        localStorage.theme = 'light'
-        document.documentElement.classList.remove('dark')
+        this.$store.dispatch('themeToggle', { theme: 'light' })
       }
     }
   }

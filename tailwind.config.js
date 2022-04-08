@@ -34,7 +34,7 @@ module.exports = {
       purple: colors.violet,
       pink: colors.pink,
       slate: {
-        50: '#f8fafc',
+        50: '#d6dae7',
         100: '#f1f5f9',
         200: '#e2e8f0',
         300: '#cbd5e1',
@@ -44,6 +44,11 @@ module.exports = {
         700: '#334155',
         800: '#1e293b',
         900: '#0f172a',
+      },
+
+      editor: {
+        light: '#FAFAFA',
+        dark: '#282C34'
       },
 
       darkmode: {
