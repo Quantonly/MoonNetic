@@ -21,7 +21,7 @@
             <span class="darkmode-animation text-black dark:text-white"><strong>Profile</strong></span>
             <font-awesome-icon icon="fa-caret-down" class="ml-3 darkmode-animation text-black dark:text-white"></font-awesome-icon>
           </button>
-          <div class="darkmode-animation absolute transform -translate-x-14 -translate-y-2 hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-darkmode-light dark:divide-gray-600" id="dropdown">
+          <div class="darkmode-animation absolute transform -translate-x-14 -translate-y-2 hidden z-50 my-4 text-base list-none bg-white rounded shadow dark:bg-darkmode-light dark:divide-gray-600" id="dropdown">
             <ul class="py-1" aria-labelledby="dropdown">
               <li @click="toggle()">
                 <router-link to="/dashboard" class="darkmode-animation block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</router-link>
@@ -33,7 +33,7 @@
                 <div class="darkmode-animation block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer" @click="logout()">Sign out</div>
               </li>
             </ul>
-            <div class="py-3 px-4">
+            <div class="py-3 px-4 darkmode-animation border-t-1 dark:border-darkmode-medium">
               <input type="checkbox" id="switch-darkmode" @change="darkmode($event)" :checked="isDark">
               <div class="switch-ui flex">
                 <label for="switch-darkmode" class="rounded-full h-8 w-36 relative cursor-pointer">

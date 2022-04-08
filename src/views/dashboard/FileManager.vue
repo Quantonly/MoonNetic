@@ -1,8 +1,8 @@
 <template>
   <service-layout>
     <div class="file-manager h-full flex flex-row">
-      <div class="flex flex-col darkmode-animation dark:bg-darkmode-medium w-80 flex-shrink-0 flex-none">
-        <div class="my-2 ml-2 flex flex-row divide-x-1">
+      <div class="flex flex-col w-80 flex-shrink-0 flex-none">
+        <div class="darkmode-animation py-3 pl-3 flex flex-row divide-x-1 h-14 bg-gray-100 dark:bg-darkmode-medium border-b-1 dark:border-darkmode-light">
           <div class="flex flex-row items-center text-white cursor-pointer bg-blue-500 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-min">
             <font-awesome-icon icon="fa-plus" class="mr-2"></font-awesome-icon>
             <p>Upload</p>
@@ -27,7 +27,7 @@
             </div>
           </div>
         </div>
-        <ul class="divide-y divide-dashed">
+        <ul>
           <li class="hover:bg-blue-50 px-5 dark:hover:bg-darkmode-light">
             <div class="flex flex-row items-center cursor-pointer py-4">
               <font-awesome-icon icon="fa-arrow-up-short-wide" size="xl" class="darkmode-animation dark:text-white text-gray-400 mr-3"></font-awesome-icon>
@@ -39,8 +39,8 @@
           <li></li>
         </ul>
         <div class="flex-auto overflow-y-auto mb-14">
-          <ul class="divide-y divide-dashed">
-            <li class="hover:bg-blue-50 px-5 dark:hover:bg-darkmode-light">
+          <ul>
+            <li class="darkmode-animation hover:bg-blue-50 px-5 dark:hover:bg-darkmode-light border-t-1 border-dashed dark:border-darkmode-light">
               <div class="flex flex-row items-center cursor-pointer py-2">
                 <input type="checkbox" class="mr-4 form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer">
                 <font-awesome-icon icon="fa-folder" size="xl" class="darkmode-animation dark:text-white text-gray-400 mr-3"></font-awesome-icon>
@@ -53,7 +53,7 @@
                 </div>
               </div>
             </li>
-            <li class="hover:bg-blue-50 px-5 dark:hover:bg-darkmode-light">
+            <li class="darkmode-animation hover:bg-blue-50 px-5 dark:hover:bg-darkmode-light border-t-1 border-dashed dark:border-darkmode-light">
               <div class="flex flex-row items-center cursor-pointer py-2">
                 <input type="checkbox" class="mr-4 form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer">
                 <font-awesome-icon icon="fa-file-code" size="xl" class="darkmode-animation dark:text-white text-gray-400 mr-5"></font-awesome-icon>
@@ -66,8 +66,33 @@
           </ul>
         </div>
       </div>
-      <div class="darkmode-animation w-full pb-14 bg-editor-light dark:bg-editor-dark">
-        <CodeEditor width="100%" height="100%" border_radius="0px" :theme="[ isDark ? 'dark' : 'light' ]" class="darkmode-animation"></CodeEditor>
+      <div class="darkmode-animation w-full pb-28 bg-editor-light dark:bg-editor-dark border-l-1 dark:border-darkmode-light">
+        <div class="darkmode-animation flex flex-row h-14 bg-gray-100 dark:bg-darkmode-medium border-b-1 dark:border-darkmode-light">
+          <div class="flex flex-row justify-start">
+            <div class="w-full h-full flex flex-row items-center cursor-pointer hover:bg-blue-100 px-5 dark:hover:bg-darkmode-light">
+              <font-awesome-icon icon="fa-pen" size="sm" class="darkmode-animation dark:text-white text-gray-400 mr-3"></font-awesome-icon>
+              <div class="w-full">
+                <p class="text-sm darkmode-animation dark:text-white">Rename</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex-auto"></div>
+          <div class="flex flex-row justify-end">
+            <div class="w-full h-full flex flex-row items-center cursor-pointer hover:bg-blue-100 px-5 dark:hover:bg-darkmode-light">
+              <font-awesome-icon icon="fa-download" size="sm" class="darkmode-animation dark:text-white text-gray-400 mr-3"></font-awesome-icon>
+              <div class="w-full">
+                <p class="text-sm darkmode-animation dark:text-white">Download</p>
+              </div>
+            </div>
+            <div class="w-full h-full flex flex-row items-center cursor-pointer hover:bg-blue-100 px-5 dark:hover:bg-darkmode-light">
+              <font-awesome-icon icon="fa-trash-can" size="sm" class="darkmode-animation dark:text-white text-gray-400 mr-3"></font-awesome-icon>
+              <div class="w-full">
+                <p class="text-sm darkmode-animation dark:text-white">Delete</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <CodeEditor width="100%" height="100%" border_radius="0px" :theme="[ isDark ? 'dark' : 'light' ]" class="darkmode-animation" :language_selector="true" :languages="[['typescript', 'TypeScript'],['html', 'HTML'],['javascript', 'JS'],['python', 'Python']]"></CodeEditor>
       </div>
     </div>
   </service-layout>
@@ -81,7 +106,7 @@ export default {
   name: 'FileManager',
   data () {
     return {
-      isDark: false
+      isDark: localStorage.theme === 'dark'
     }
   },
   components: {
@@ -126,11 +151,5 @@ code {
     -webkit-border-radius: 10px;
     border-radius: 10px;
     background: #6d6d6d;
-}
-.box__dragndrop,
-.box__uploading,
-.box__success,
-.box__error {
-  display: none;
 }
 </style>
