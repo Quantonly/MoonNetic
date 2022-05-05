@@ -2,25 +2,28 @@
   <service-layout>
     <div class="file-manager h-full flex flex-row">
       <div class="flex flex-col w-80 flex-shrink-0 flex-none">
-        <div class="darkmode-animation py-3 pl-3 flex flex-row divide-x-1 h-14 bg-gray-100 dark:bg-darkmode-medium border-b-1 dark:border-darkmode-light">
-          <div class="flex flex-row items-center text-white cursor-pointer bg-blue-500 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-min">
-            <font-awesome-icon icon="fa-plus" class="mr-2"></font-awesome-icon>
-            <p>Upload</p>
-          </div>
-          <div id="create-dropdown-area" @click="toggleCreate" class="text-white cursor-pointer bg-blue-500 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium text-sm px-3 py-1.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-min">
+        <div class="darkmode-animation py-3 pl-3 flex flex-row h-14 bg-gray-100 dark:bg-darkmode-medium border-b-1 dark:border-darkmode-light">
+          <form enctype="multipart/form-data">
+          <input type="file" name="file" id="file" ref="file" class="hidden" accept=".zip" @change="handleFileUpload()">
+          <label for="file" class="select-none flex flex-row items-center border-r-1 text-white cursor-pointer bg-blue-500 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-min">
+              <font-awesome-icon icon="fa-plus" class="mr-2"></font-awesome-icon>
+              <p>Upload</p>
+          </label>
+          </form>
+          <div id="create-dropdown-area" @click="toggleCreate" class="select-none text-white cursor-pointer bg-blue-500 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium text-sm px-3 py-1.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-min">
             <font-awesome-icon icon="fa-angle-down"></font-awesome-icon>
             <div class="w-32 darkmode-animation absolute transform -translate-x-28 -translate-y-2 border-1 dark:border-opacity-0 hidden z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 shadow dark:bg-darkmode-light dark:divide-gray-600" id="create-dropdown">
               <ul class="py-1" aria-labelledby="dropdown">
-                <li @click="toggleCreate()">
+                <li @click="create('New Folder', true)">
                   <div class="darkmode-animation block py-1 px-4 text-sm text-gray-400 font-normal hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-white dark:hover:text-white text-left">New folder</div>
                 </li>
-                <li @click="toggleCreate()">
-                  <div class="darkmode-animation block py-1 px-4 text-sm text-gray-400 font-normal hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-white dark:hover:text-white text-left">New HTML file</div>
+                <li @click="create('New File.php')">
+                  <div class="darkmode-animation block py-1 px-4 text-sm text-gray-400 font-normal hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-white dark:hover:text-white text-left">New PHP file</div>
                 </li>
-                <li @click="toggleCreate()">
-                  <div class="darkmode-animation block py-1 px-4 text-sm text-gray-400 font-normal hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-white dark:hover:text-white text-left">New text file</div>
+                <li @click="create('New File.js')">
+                  <div class="darkmode-animation block py-1 px-4 text-sm text-gray-400 font-normal hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-white dark:hover:text-white text-left">New JS file</div>
                 </li>
-                <li @click="toggleCreate()">
+                <li @click="create('New File')">
                   <div class="darkmode-animation block py-1 px-4 text-sm text-gray-400 font-normal hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-white dark:hover:text-white text-left">New other file</div>
                 </li>
               </ul>
@@ -38,7 +41,7 @@
           </li>
           <li></li>
         </ul>
-        <div class="flex-auto overflow-y-auto mb-14 select-none">
+        <div class="flex-auto overflow-y-auto mb-14 select-none overflow-x-hidden">
           <ul>
             <li v-for="directory in directories" :key="directory" class="darkmode-animation hover:bg-blue-50 dark:hover:bg-darkmode-light border-t-1 border-dashed dark:border-darkmode-light">
               <div class="flex flex-row items-center">
@@ -46,7 +49,8 @@
                 <div class="pr-5 flex-auto flex flex-row items-center cursor-pointer py-2" @click="changeFolder(directory.split('/')[directory.split('/').length - 1])">
                   <font-awesome-icon icon="fa-folder" size="xl" class="darkmode-animation dark:text-white text-gray-400 mr-3"></font-awesome-icon>
                   <div class="w-full">
-                    <p class="darkmode-animation dark:text-white">{{ directory.split('/')[directory.split('/').length - 1] }}</p>
+                    <p v-if="directory.split('/')[directory.split('/').length - 1].length > 24" class="darkmode-animation dark:text-white">{{ directory.split('/')[directory.split('/').length - 1].substring(0, 24) }}...</p>
+                    <p v-else class="darkmode-animation dark:text-white">{{ directory.split('/')[directory.split('/').length - 1] }}</p>
                     <p class="darkmode-animation dark:text-white text-xs text-gray-600">{{ nextFolderItems(directory) }} items</p>
                   </div>
                   <div class="text-right">
@@ -61,7 +65,8 @@
                 <div class="pr-5 flex-auto flex flex-row items-center cursor-pointer py-2" @click="readFile(file)">
                   <font-awesome-icon icon="fa-file-code" size="xl" class="darkmode-animation dark:text-white text-gray-400 mr-5"></font-awesome-icon>
                   <div class="w-full">
-                    <p class="darkmode-animation dark:text-white ">{{ file.split('/')[file.split('/').length - 1] }}</p>
+                    <p v-if="file.split('/')[file.split('/').length - 1].length > 24" class="darkmode-animation dark:text-white ">{{ file.split('/')[file.split('/').length - 1].substring(0, 24) }}...</p>
+                    <p v-else class="darkmode-animation dark:text-white ">{{ file.split('/')[file.split('/').length - 1] }}</p>
                   </div>
                 </div>
               </div>
@@ -69,13 +74,21 @@
           </ul>
         </div>
       </div>
-      <div class="darkmode-animation w-full pb-28 bg-editor-light dark:bg-editor-dark border-l-1 dark:border-darkmode-light">
+      <div class="select-none darkmode-animation w-full pb-28 bg-editor-light dark:bg-editor-dark border-l-1 dark:border-darkmode-light">
         <div class="darkmode-animation flex flex-row h-14 bg-gray-100 dark:bg-darkmode-medium border-b-1 dark:border-darkmode-light">
           <div class="flex flex-row justify-start">
-            <div v-if="selectedItems.length == 1" class="w-full h-full flex flex-row items-center cursor-pointer hover:bg-blue-100 px-5 dark:hover:bg-darkmode-light">
+            <div v-if="selectedItems.length == 1" @click="rename()" class="w-full h-full flex flex-row items-center cursor-pointer hover:bg-blue-100 px-5 dark:hover:bg-darkmode-light">
               <font-awesome-icon icon="fa-pen" size="sm" class="darkmode-animation dark:text-white text-gray-400 mr-3"></font-awesome-icon>
               <div class="w-full">
                 <p class="text-sm darkmode-animation dark:text-white">Rename</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-row justify-start">
+            <div v-if="selectedItems.length == 1" @click="save()" :class="[!fileDirty ? 'cursor-default' : 'cursor-pointer hover:bg-blue-100 dark:hover:bg-darkmode-light']" class="w-full h-full flex flex-row items-center px-5">
+              <font-awesome-icon icon="fa-floppy-disk" size="sm" class="darkmode-animation mr-3 text-gray-400 dark:text-white"></font-awesome-icon>
+              <div class="w-full">
+                <p class="text-sm darkmode-animation dark:text-white">Save</p>
               </div>
             </div>
           </div>
@@ -87,7 +100,7 @@
                 <p class="text-sm darkmode-animation dark:text-white">Download</p>
               </div>
             </div>
-            <div v-if="selectedItems.length > 0" class="w-full h-full flex flex-row items-center cursor-pointer hover:bg-blue-100 px-5 dark:hover:bg-darkmode-light">
+            <div v-if="selectedItems.length > 0" @click="deleteFiles()" class="w-full h-full flex flex-row items-center cursor-pointer hover:bg-blue-100 px-5 dark:hover:bg-darkmode-light">
               <font-awesome-icon icon="fa-trash-can" size="sm" class="darkmode-animation dark:text-white text-gray-400 mr-3"></font-awesome-icon>
               <div class="w-full">
                 <p class="text-sm darkmode-animation dark:text-white">Delete</p>
@@ -134,11 +147,14 @@
           <div v-if="selectedItems.length === 0" class="w-full h-full items-center flex justify-center">
             <p class="darkmode-animation dark:text-white text-3xl">No items selected</p>
           </div>
-          <div v-if="selectedItems.length === 1 && !file" class="w-full h-full items-center flex justify-center">
+          <div v-if="selectedItems.length === 1 && !file && !isImage" class="w-full h-full items-center flex justify-center">
             <font-awesome-icon icon="fa-folder" size="7x" class="darkmode-animation dark:text-white text-gray-400 mr-3"></font-awesome-icon>
           </div>
           <div v-if="selectedItems.length === 1 && file" class="w-full h-full pb-28">
-            <CodeEditor :value="fileContent" width="100%" height="100%" border_radius="0px" :theme="isDark" class="darkmode-animation" :language_selector="true" :languages="[['typescript', 'TypeScript'],['html', 'HTML'],['javascript', 'JS'],['python', 'Python']]"></CodeEditor>
+            <CodeEditor :key="currentLanguage[0][0]" v-model="newFileContent" width="100%" height="100%" border_radius="0px" :theme="isDark" class="darkmode-animation" :languages="currentLanguage"></CodeEditor>
+          </div>
+          <div v-if="selectedItems.length === 1 && !file && isImage" class="w-full h-full items-center flex justify-center">
+            <font-awesome-icon icon="fa-image" size="7x" class="darkmode-animation dark:text-white text-gray-400 mr-3"></font-awesome-icon>
           </div>
           <div v-if="selectedItems.length > 1" class="w-full h-full items-center flex flex-col justify-center">
             <font-awesome-icon icon="fa-folder" size="7x" class="darkmode-animation dark:text-white text-gray-400 mr-3"></font-awesome-icon>
@@ -147,10 +163,33 @@
         </div>
       </div>
     </div>
+    <CreateModal
+      v-show="isCreating"
+      @close="closeModal"
+      @refresh="refresh($event)"
+      :extension="createExtension"
+      :isFolder="isFolder"
+      :currentFolder="currentFolder"
+    />
+    <RenameModal
+      v-show="isRenaming"
+      @close="closeModal"
+      @refresh="refresh($event)"
+      :fileName="selectedItems[0]"
+    />
+    <DeleteModal
+      v-show="isDeleting"
+      @close="closeModal"
+      @refresh="deleteRefresh"
+      :fileNames="selectedItems"
+    />
   </service-layout>
 </template>
 
 <script>
+import CreateModal from '@/components/modals/CreateModal.vue'
+import RenameModal from '@/components/modals/RenameModal.vue'
+import DeleteModal from '@/components/modals/DeleteModal.vue'
 import { FileService } from '../../services/file.service.js'
 import ServiceLayout from '@/components/layouts/ServiceLayout.vue'
 import CodeEditor from 'simple-code-editor'
@@ -165,14 +204,39 @@ export default {
       files: [],
       selectedItems: [],
       file: null,
-      fileContent: '',
+      isImage: false,
+      isFolder: false,
+      image: null,
+      oldFileContent: '',
+      newFileContent: '',
       fileDirty: false,
-      isLoaded: false
+      isLoaded: false,
+      isCreating: false,
+      isRenaming: false,
+      isDeleting: false,
+      languages: [
+        ['txt', 'Text'],
+        ['yml', 'YAML'],
+        ['yaml', 'YAML'],
+        ['json', 'JSON'],
+        ['xml', 'XML'],
+        ['sh', 'Shell'],
+        ['md', 'Markdown'],
+        ['php', 'PHP'],
+        ['js', 'Javascript'],
+        ['css', 'CSS']
+      ],
+      currentLanguage: [['txt', 'Text']],
+      imageExtensions: ['tif', 'tiff', 'ico', 'cur', 'bmp', 'webp', 'svg', 'png', 'jpg', 'jpeg', 'jfif', 'pjpeg', 'pjp', 'gif', 'avif', 'apng'],
+      createExtension: ''
     }
   },
   components: {
     ServiceLayout,
-    CodeEditor
+    CodeEditor,
+    CreateModal,
+    RenameModal,
+    DeleteModal
   },
   mounted () {
     this.$store.dispatch('getFiles').then(() => {
@@ -183,6 +247,20 @@ export default {
     else this.isDark = 'light'
   },
   methods: {
+    refresh (newFileName) {
+      this.$store.dispatch('getFiles').then(() => {
+        this.setFolder()
+        if (this.files.includes(newFileName)) this.file = newFileName
+        this.selectedItems.push(newFileName)
+        this.closeModal()
+      })
+    },
+    deleteRefresh () {
+      this.$store.dispatch('getFiles').then(() => {
+        this.setFolder()
+        this.closeModal()
+      })
+    },
     toggleCreate () {
       const targetEl = document.getElementById('create-dropdown')
       targetEl.classList.toggle('hidden')
@@ -247,18 +325,29 @@ export default {
     },
     async readFile (data) {
       if (data !== this.file) {
-        this.file = data
-        this.fileContent = ''
+        this.file = null
+        this.isImage = false
+        this.imageExtensions.forEach(extension => {
+          if (data.endsWith(extension)) this.isImage = true
+        })
+        this.newFileContent = ''
+        this.oldFileContent = ''
         this.selectedItems = []
         this.selectedItems.push(data)
-        await FileService.readFile(data).then((response) => {
-          var reader = new FileReader()
-          const vm = this
-          reader.onload = function () {
-            vm.fileContent = reader.result
-          }
-          reader.readAsText(new Blob([response.data]))
-        })
+        if (this.isImage) {
+        } else {
+          this.file = data
+          this.getLanguage()
+          await FileService.readFile(data).then((response) => {
+            var reader = new FileReader()
+            const vm = this
+            reader.onload = function () {
+              vm.newFileContent = reader.result
+              vm.oldFileContent = reader.result
+            }
+            reader.readAsText(new Blob([response.data]))
+          })
+        }
       }
     },
     async download () {
@@ -266,7 +355,6 @@ export default {
         const url = window.URL.createObjectURL(new Blob([response.data]))
         const link = document.createElement('a')
         link.href = url
-        console.log(url)
         link.setAttribute('download', 'contents.rar')
         document.body.appendChild(link)
         link.click()
@@ -274,6 +362,9 @@ export default {
       })
     },
     changeSelectedItems (data) {
+      this.isRenaming = false
+      this.isDeleting = false
+      this.isImage = false
       this.file = null
       if (!this.selectedItems.includes(data)) this.selectedItems.push(data)
       else this.selectedItems.splice(this.selectedItems.indexOf(data), 1)
@@ -281,12 +372,61 @@ export default {
     },
     isSelected (data) {
       return this.selectedItems.includes(data)
+    },
+    getLanguage () {
+      const fileLanguage = [['txt', 'Text']]
+      this.languages.forEach(language => {
+        if (this.file.endsWith(language[0])) {
+          fileLanguage.pop()
+          fileLanguage.push(language)
+        }
+      })
+      this.currentLanguage = fileLanguage
+      this.$forceUpdate()
+    },
+    create (extension, isFolder = false) {
+      this.isFolder = isFolder
+      this.createExtension = extension
+      this.isCreating = true
+    },
+    rename () {
+      this.isRenaming = true
+    },
+    async save () {
+      if (this.fileDirty) {
+        this.fileDirty = false
+        await FileService.editFile({ path: this.file, content: this.newFileContent }).then((response) => {
+          console.log('testsd')
+        })
+      }
+    },
+    deleteFiles () {
+      this.isDeleting = true
+    },
+    closeModal () {
+      this.isCreating = false
+      this.isRenaming = false
+      this.isDeleting = false
+    },
+    async handleFileUpload () {
+      const uploadFile = this.$refs.file.files[0]
+      const formData = new FormData()
+      formData.append('file', uploadFile)
+      await FileService.uploadFile(formData).then((response) => {
+        this.$store.dispatch('getFiles').then(() => {
+          this.setFolder()
+        })
+      })
     }
   },
   watch: {
     '$store.state.theme.theme' (newValue) {
       if (newValue === 'dark') this.isDark = 'dark'
       else this.isDark = 'light'
+    },
+    'newFileContent' (newValue) {
+      if (newValue !== this.oldFileContent) this.fileDirty = true
+      else this.fileDirty = false
     }
   }
 }

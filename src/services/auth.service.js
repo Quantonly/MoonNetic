@@ -2,6 +2,19 @@ import http from '../http.js'
 import qs from 'query-string'
 
 export class AuthService {
+  static register (data) {
+    return http.post('/auth/register', qs.stringify({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: data.password
+    }), {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    })
+  }
+
   static login (data) {
     return http.post('/auth/login', qs.stringify({
       email: data.email,

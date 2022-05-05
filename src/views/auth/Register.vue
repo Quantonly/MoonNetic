@@ -3,6 +3,10 @@
     <div class="w-full max-w-sm m-auto">
       <form class="darkmode-animation bg-white shadow-2xl rounded px-8 pt-6 pb-8 mb-4 dark:bg-darkmode-light">
         <p class="darkmode-animation font-bold text-3xl mb-10 text-center dark:text-white">Register</p>
+        <div v-if="error" class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 mb-5" role="alert">
+          <p class="font-bold">Registration failed</p>
+          <p>{{ error }}</p>
+        </div>
         <div class="mb-4">
           <label class="darkmode-animation block text-gray-700 text-sm font-bold mb-2 dark:text-white" for="firstName">
             First Name
@@ -41,7 +45,7 @@
           <p v-if="!$v.confirmPassword.sameAsPassword && $v.confirmPassword.$dirty" class="text-red-500 text-xs italic mt-2">Passwords must be identical</p>
         </div>
         <div class="flex items-center justify-between">
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+          <button @click="register" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
             Sign Up
           </button>
           <router-link to="/login" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
@@ -68,7 +72,8 @@ export default {
       lastName: '',
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      error: null
     }
   },
   validations: {
@@ -88,6 +93,26 @@ export default {
     },
     confirmPassword: {
       sameAsPassword: sameAs('password')
+    }
+  },
+  methods: {
+    register () {
+      this.$v.$touch()
+      if (!this.$v.$invalid) {
+        const firstName = this.firstName
+        const lastName = this.lastName
+        const email = this.email
+        const password = this.password
+        this.$store
+          .dispatch('register', { firstName, lastName, email, password })
+          .then(() => this.$router.push('/login'))
+          .catch(() => {
+            this.setError('Something went wrong')
+          })
+      }
+    },
+    setError (data) {
+      this.error = data
     }
   }
 }

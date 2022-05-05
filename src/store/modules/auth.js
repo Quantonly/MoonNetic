@@ -15,6 +15,11 @@ const getters = {
 }
 
 const actions = {
+  async register ({ commit }, data) {
+    await AuthService.register(data).then(response => {
+      data = response.data
+    })
+  },
   async login ({ commit }, data) {
     await AuthService.login(data).then(response => {
       commit('SET_AUTH', response.data)
