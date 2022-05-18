@@ -24,6 +24,24 @@ const routes = [
     meta: { login: true }
   },
   {
+    path: '/dashboard/backups',
+    alias: '/',
+    component: () => import('@/views/dashboard/BackupRestore'),
+    meta: { login: true }
+  },
+  {
+    path: '/dashboard/database',
+    alias: '/',
+    component: () => import('@/views/dashboard/PHPInfo'),
+    meta: { login: true }
+  },
+  {
+    path: '/dashboard/sftp',
+    alias: '/',
+    component: () => import('@/views/dashboard/SFTPInfo'),
+    meta: { login: true }
+  },
+  {
     path: '/home',
     alias: '/',
     component: () => import('@/views/Home'),

@@ -46,7 +46,7 @@
                 <h4 class="darkmode-animation dark:text-white font-semibold">PHP and database settings</h4>
               </div>
               <div class="flex flex-col">
-                <p class="text-gray-500">Use our file editor to upload, edit or remove all your files in the same place</p>
+                <p class="text-gray-500">Here you can update your PHP version and find your phpmyadmin credentials</p>
               </div>
             </div>
             <router-link to="/dashboard/database">
@@ -62,27 +62,11 @@
                 <h4 class="darkmode-animation dark:text-white font-semibold">SFTP</h4>
               </div>
               <div class="flex flex-col">
-                <p class="text-gray-500">...</p>
+                <p class="text-gray-500">Here you can find your SFTP connection credentials</p>
               </div>
             </div>
             <router-link to="/dashboard/sftp">
               <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">SFTP</button>
-            </router-link>
-          </div>
-        </div>
-        <div class="w-80 border-t-4 border-black">
-          <div class="darkmode-animation flex flex-col justify-between h-80 p-4 max-w-sm bg-white rounded-b-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-darkmode-light dark:border-gray-700">
-            <div>
-              <div class="flex items-center gap-5 mb-8">
-                <font-awesome-icon icon="fa-terminal" size="xl" class="text-black"></font-awesome-icon>
-                <h4 class="darkmode-animation dark:text-white font-semibold">SSH</h4>
-              </div>
-              <div class="flex flex-col">
-                <p class="text-gray-500">...</p>
-              </div>
-            </div>
-            <router-link to="/dashboard/ssh">
-              <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">SSH</button>
             </router-link>
           </div>
         </div>

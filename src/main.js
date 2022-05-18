@@ -4,7 +4,7 @@ import Vuelidate from 'vuelidate'
 import router from './router'
 import store from './store'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faHome, faCaretDown, faFolder, faFileShield, faDatabase, faArrowRightArrowLeft, faTerminal, faAngleRight, faFileCode, faArrowUpShortWide, faSearch, faAngleDown, faPlus, faPen, faDownload, faTrashCan, faWindowMaximize, faImage, faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faCaretDown, faFolder, faFileShield, faDatabase, faArrowRightArrowLeft, faTerminal, faAngleRight, faFileCode, faArrowUpShortWide, faSearch, faAngleDown, faPlus, faPen, faDownload, faTrashCan, faWindowMaximize, faImage, faFloppyDisk, faEye, faEyeSlash, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VuePageTitle from 'vue-page-title'
 
@@ -17,7 +17,7 @@ if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.match
   document.documentElement.classList.remove('dark')
 }
 
-library.add(faHome, faCaretDown, faFolder, faFileShield, faDatabase, faTerminal, faArrowRightArrowLeft, faAngleRight, faFileCode, faArrowUpShortWide, faSearch, faAngleDown, faPlus, faPen, faDownload, faTrashCan, faWindowMaximize, faImage, faFloppyDisk)
+library.add(faHome, faCaretDown, faFolder, faFileShield, faDatabase, faTerminal, faArrowRightArrowLeft, faAngleRight, faFileCode, faArrowUpShortWide, faSearch, faAngleDown, faPlus, faPen, faDownload, faTrashCan, faWindowMaximize, faImage, faFloppyDisk, faEye, faEyeSlash, faArrowUpRightFromSquare)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
