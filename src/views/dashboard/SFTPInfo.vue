@@ -11,7 +11,7 @@
               </div>
               <div class="flex flex-row justify-center gap-8">
                 <div class="darkmode-animation flex flex-col bg-gray-200 dark:bg-darkmode-medium rounded-lg w-full">
-                  <p class="darkmode-animation dark:text-white py-3 pl-3 font-bold">Host: <span class="font-normal">{{ info.sftp_host }}</span></p>
+                  <p class="darkmode-animation dark:text-white py-3 pl-3 font-bold">Host: sftp://<span class="font-normal">{{ info.sftp_host }}</span></p>
                 </div>
               </div>
               <div class="flex flex-row justify-center gap-8 mt-8">
