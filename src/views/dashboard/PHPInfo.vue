@@ -16,7 +16,7 @@
                 <div class="darkmode-animation flex flex-col bg-gray-200 dark:bg-darkmode-medium rounded-lg w-full">
                   <div class="flex flex-row justify-between">
                     <p class="darkmode-animation dark:text-white py-3 pl-3 font-bold">PhpMyAdmin: <span class="font-normal">{{ info.php_host }}/phpmyadmin</span></p>
-                    <a href="http://moonnetic.com/phpmyadmin" target="_blank">
+                    <a :href="'http://' + info.php_host + '/phpmyadmin'" target="_blank">
                       <font-awesome-icon icon="fa-arrow-up-right-from-square" class="darkmode-animation cursor-pointer dark:text-white pr-3 py-4"></font-awesome-icon>
                     </a>
                   </div>
