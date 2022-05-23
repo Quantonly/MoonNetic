@@ -67,15 +67,15 @@
             <div class="darkmode-animation flex flex-col justify-between h-80 p-4 max-w-sm bg-white rounded-b-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-darkmode-light dark:border-gray-700">
               <div>
                 <div class="flex items-center gap-5 mb-8">
-                  <font-awesome-icon icon="fa-file-shield" size="xl" class="text-blue-400"></font-awesome-icon>
-                  <h4 class="darkmode-animation dark:text-white font-semibold">Backup & Restore</h4>
+                  <font-awesome-icon icon="fa-terminal" size="xl" class="text-blue-400"></font-awesome-icon>
+                  <h4 class="darkmode-animation dark:text-white font-semibold">Commands</h4>
                 </div>
                 <div class="flex flex-col">
-                  <p class="text-gray-500">Tweak our backup system to your needs or recover a saved backup</p>
+                  <p class="text-gray-500">Use our frequently used commands to make sure everything is up and running</p>
                 </div>
               </div>
-              <router-link to="/dashboard/backups" class="w-max rounded-lg">
-                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Backup & Restore</button>
+              <router-link to="/dashboard/commands" class="w-max rounded-lg">
+                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Commands</button>
               </router-link>
             </div>
           </div>

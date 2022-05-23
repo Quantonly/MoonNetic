@@ -24,9 +24,9 @@ const routes = [
     meta: { login: true }
   },
   {
-    path: '/dashboard/backups',
+    path: '/dashboard/commands',
     alias: '/',
-    component: () => import('@/views/dashboard/BackupRestore'),
+    component: () => import('@/views/dashboard/Commands'),
     meta: { login: true }
   },
   {

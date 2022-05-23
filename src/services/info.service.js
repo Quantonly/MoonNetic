@@ -1,6 +1,10 @@
 import http from '../http.js'
 
 export class InfoService {
+  static setStoragePermissions () {
+    return http.post('/setstoragepermissions')
+  }
+
   static createWebsite (data) {
     return http.post('/createwebsite', {
       subDomain: data.subDomain,
