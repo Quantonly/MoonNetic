@@ -28,7 +28,7 @@ const mutations = {
     state.folder.directories = payload.directories
     state.folder.files = payload.files
     state.folder.accessDirectories = payload.accessDirectories
-    state.folder.subDomain = payload.subDomain
+    state.subDomain = payload.subDomain
   }
 }
 

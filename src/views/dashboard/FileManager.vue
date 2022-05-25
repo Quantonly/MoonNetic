@@ -114,7 +114,7 @@
             <font-awesome-icon v-if="currentFolder === ''" icon="fa-window-maximize" size="2xl" class="darkmode-animation dark:text-white text-gray-400 mr-3"></font-awesome-icon>
             <div class="w-full ml-7">
               <p v-if="currentFolder !== ''" class="darkmode-animation dark:text-white text-2xl">{{ currentFolder.split('/')[currentFolder.split('/').length - 1] }}</p>
-              <p v-if="currentFolder === ''" class="darkmode-animation dark:text-white text-2xl">.moonnetic.be</p>
+              <p v-if="currentFolder === ''" class="darkmode-animation dark:text-white text-2xl">{{ subDomain }}.moonnetic.be</p>
               <p v-if="currentFolder !== ''" class="darkmode-animation dark:text-white text-gray-600">{{ nextFolderItems(currentFolder) }} items</p>
               <p v-if="currentFolder === ''" class="darkmode-animation dark:text-white text-gray-600">{{ nextFolderItems('') }} items</p>
             </div>
