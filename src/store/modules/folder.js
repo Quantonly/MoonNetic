@@ -4,13 +4,15 @@ const state = {
   folder: {
     directories: null,
     files: null
-  }
+  },
+  subDomain: null
 }
 
 const getters = {
   rootDirectories: state => state.folder.directories.filter(directory => (directory.split('/').length === 1)),
   directories: state => state.folder.directories,
-  files: state => state.folder.files
+  files: state => state.folder.files,
+  subDomain: state => state.subDomain
 }
 
 const actions = {
@@ -26,6 +28,7 @@ const mutations = {
     state.folder.directories = payload.directories
     state.folder.files = payload.files
     state.folder.accessDirectories = payload.accessDirectories
+    state.folder.subDomain = payload.subDomain
   }
 }
 

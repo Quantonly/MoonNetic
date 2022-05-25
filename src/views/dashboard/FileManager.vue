@@ -286,6 +286,7 @@ export default {
       this.selectedItems = []
       this.directories = currentDirectories
       this.files = currentFiles
+      this.subDomain = this.$store.getters.subDomain
       this.file = null
     },
     changeFolder (data) {
