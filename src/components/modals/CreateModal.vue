@@ -43,15 +43,17 @@ export default {
   },
   methods: {
     async create () {
+      if (this.currentFolder === '') this.currentPath = ''
+      else this.currentPath = this.currentFolder + '/'
       this.$v.$touch()
       if (!this.$v.$invalid) {
         if (this.isFolder) {
           await FileService.createFolder({ newFileName: this.currentPath + this.newFileName }).then((response) => {
-            this.$emit('refresh', this.newFileName)
+            this.$emit('refresh', this.currentPath + this.newFileName)
           })
         } else {
           await FileService.createFile({ newFileName: this.currentPath + this.newFileName }).then((response) => {
-            this.$emit('refresh', this.newFileName)
+            this.$emit('refresh', this.currentPath + this.newFileName)
           })
         }
       }

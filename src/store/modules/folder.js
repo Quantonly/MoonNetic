@@ -27,7 +27,6 @@ const mutations = {
   SET_FOLDER: (state, payload) => {
     state.folder.directories = payload.directories
     state.folder.files = payload.files
-    state.folder.accessDirectories = payload.accessDirectories
     state.subDomain = payload.subDomain
   }
 }

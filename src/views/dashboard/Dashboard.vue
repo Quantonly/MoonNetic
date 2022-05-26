@@ -10,7 +10,7 @@
             <div class="darkmode-animation dark:bg-darkmode-light rounded-b-lg bg-white p-4 flex flex-col justify-between leading-normal">
               <div class="mb-8">
                 <div class="darkmode-animation dark:text-white text-black font-bold text-xl mb-2">Your website is running successfully</div>
-                <p class="darkmode-animation dark:text-white text-grey-darker text-base">Surf to <a class="underline" :href="'http://' + websites.websites[0].sub_domain + '.moonnetic.com'" target="_blank">{{ websites.websites[0].sub_domain }}.moonnetic.com</a> to view your website in production.</p>
+                <p class="darkmode-animation dark:text-white text-grey-darker text-base">Surf to <a class="underline" :href="'https://' + websites.websites[0].sub_domain + '.moonnetic.com'" target="_blank">{{ websites.websites[0].sub_domain }}.moonnetic.com</a> to view your website in production.</p>
               </div>
               <div class="flex items-center">
                 <img class="w-10 h-10 mr-4" src="../../assets/images/logo.png" alt="Avatar of Jonathan Reinink">

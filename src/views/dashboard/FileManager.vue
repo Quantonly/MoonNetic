@@ -398,7 +398,6 @@ export default {
       if (this.fileDirty) {
         this.fileDirty = false
         await FileService.editFile({ path: this.file, content: this.newFileContent }).then((response) => {
-          console.log('testsd')
         })
       }
     },
