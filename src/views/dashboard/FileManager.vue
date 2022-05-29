@@ -196,6 +196,7 @@ import CodeEditor from 'simple-code-editor'
 
 export default {
   name: 'FileManager',
+  title: 'File Manager',
   data () {
     return {
       isDark: localStorage.theme === 'dark' ? 'dark' : 'light',

@@ -38,6 +38,7 @@ import { InfoService } from '../../services/info.service'
 
 export default {
   name: 'Commands',
+  title: 'Commands',
   data () {
     return {
       text: '',

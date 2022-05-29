@@ -83,6 +83,7 @@ import MainLayout from '@/components/layouts/MainLayout.vue'
 
 export default {
   name: 'NotFound',
+  title: 'Not Found',
   components: {
     MainLayout
   },

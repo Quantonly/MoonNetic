@@ -36,7 +36,7 @@ import MainLayout from '@/components/layouts/MainLayout.vue'
 import { required, sameAs, minLength } from 'vuelidate/lib/validators'
 
 export default {
-  title: 'ResetPassword',
+  title: 'Reset Password',
   components: {
     MainLayout
   },

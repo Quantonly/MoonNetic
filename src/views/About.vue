@@ -90,6 +90,7 @@ import MainLayout from '@/components/layouts/MainLayout.vue'
 
 export default {
   name: 'About',
+  title: 'About',
   components: {
     MainLayout
   }

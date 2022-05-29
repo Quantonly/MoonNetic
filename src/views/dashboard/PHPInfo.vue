@@ -62,6 +62,7 @@ import MainLayout from '@/components/layouts/MainLayout.vue'
 
 export default {
   name: 'PHPInfo',
+  title: 'PHP',
   data () {
     return {
       info: [],

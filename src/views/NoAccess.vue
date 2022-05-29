@@ -83,6 +83,7 @@ import MainLayout from '@/components/layouts/MainLayout.vue'
 
 export default {
   name: 'NoAccess',
+  title: 'No Access',
   components: {
     MainLayout
   }

@@ -46,6 +46,7 @@ import MainLayout from '@/components/layouts/MainLayout.vue'
 
 export default {
   name: 'SFTPInfo',
+  title: 'SFTP',
   data () {
     return {
       info: [],

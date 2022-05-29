@@ -11,6 +11,7 @@ import MainLayout from '@/components/layouts/MainLayout.vue'
 
 export default {
   name: 'Settings',
+  title: 'Settings',
   components: {
     MainLayout
   }

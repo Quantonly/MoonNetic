@@ -131,6 +131,7 @@ import CreateWebsiteModal from '@/components/modals/CreateWebsiteModal.vue'
 
 export default {
   name: 'Dashboard',
+  title: 'Dashboard',
   data () {
     return {
       websites: null,

@@ -54,6 +54,7 @@ import MainLayout from '@/components/layouts/MainLayout.vue'
 
 export default {
   name: 'Contact',
+  title: 'Contact',
   components: {
     MainLayout
   }

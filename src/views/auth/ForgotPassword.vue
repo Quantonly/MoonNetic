@@ -29,7 +29,7 @@ import MainLayout from '@/components/layouts/MainLayout.vue'
 import { required, email } from 'vuelidate/lib/validators'
 
 export default {
-  title: 'ForgotPassword',
+  title: 'Forgot Password',
   components: {
     MainLayout
   },
