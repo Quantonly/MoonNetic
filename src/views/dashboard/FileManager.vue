@@ -225,7 +225,8 @@ export default {
         ['md', 'Markdown'],
         ['php', 'PHP'],
         ['js', 'Javascript'],
-        ['css', 'CSS']
+        ['css', 'CSS'],
+        ['html', 'HTML']
       ],
       currentLanguage: [['txt', 'Text']],
       imageExtensions: ['tif', 'tiff', 'ico', 'cur', 'bmp', 'webp', 'svg', 'png', 'jpg', 'jpeg', 'jfif', 'pjpeg', 'pjp', 'gif', 'avif', 'apng'],
