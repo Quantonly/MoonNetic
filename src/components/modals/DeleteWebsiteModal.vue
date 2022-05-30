@@ -4,23 +4,19 @@
       <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
         <div class="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
           <h3 class="text-xl font-semibold text-gray-900 lg:text-2xl dark:text-white">
-            Create website
+            Delete website
           </h3>
           <button @click="close()" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
           </button>
         </div>
-        <div v-if="error" class="mx-6 mt-2 bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 mb-5" role="alert">
-          <p class="font-bold">Website creation failed</p>
-          <p>{{ error }}</p>
-        </div>
-        <p class="dark:text-white pl-6 pt-3">Subdomain:</p>
-        <div class="px-6 py-3 space-y-6">
-          <input v-model.trim="$v.subDomain.$model" type="text" id="subDomain" :class="{ 'border-red-500': $v.subDomain.$error }" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-          <p v-if="!$v.subDomain.required && $v.subDomain.$dirty" class="text-red-500 text-xs italic mt-2">Field is required</p>
+        <div class="p-6 space-y-6">
+          <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+            Are you sure you want to delete your website? This action can't be reversed!
+          </p>
         </div>
         <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
-          <button @click="create()" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create</button>
+          <button @click="deleteFunc()" type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Delete</button>
           <button @click="close()" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
         </div>
       </div>
@@ -30,36 +26,17 @@
 
 <script>
 import { InfoService } from '../../services/info.service.js'
-import { required } from 'vuelidate/lib/validators'
 
 export default {
-  name: 'CreateWebsiteModal',
-  data () {
-    return {
-      subDomain: '',
-      error: null
-    }
-  },
-  validations: {
-    subDomain: {
-      required
-    }
-  },
+  name: 'DeleteWebsiteModal',
   methods: {
-    async create () {
-      this.$v.$touch()
-      if (!this.$v.$invalid) {
-        await InfoService.createWebsite({ subDomain: this.subDomain, phpVersion: '7.4' }).then((response) => {
-          if (response) this.$emit('refresh')
-          else this.setError('Subdomain already exists')
-        })
-      }
+    async deleteFunc () {
+      await InfoService.deleteWebsite().then((response) => {
+        this.$emit('refresh')
+      })
     },
     close () {
       this.$emit('close')
-    },
-    setError (data) {
-      this.error = data
     }
   }
 }

@@ -3,7 +3,7 @@ import qs from 'query-string'
 
 export class AuthService {
   static deleteUser () {
-    return http.get('deleteuser')
+    return http.get('/auth/deleteuser')
   }
 
   static register (data) {

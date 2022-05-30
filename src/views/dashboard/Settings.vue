@@ -26,12 +26,12 @@
           </div>
           <div class="flex justify-center">
           <div class="text-center mt-6 mr-10">
-            <button class="darkmode-animation bg-red-700 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+            <button @click="deleteWebsite()" class="darkmode-animation bg-red-700 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
               Delete Website
             </button>
           </div>
           <div class="text-center mt-6">
-            <button class="darkmode-animation bg-red-700 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+            <button @click="deleteAccount()" class="darkmode-animation bg-red-700 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
               Delete Account
             </button>
           </div>
@@ -39,20 +39,41 @@
         </div>
       </section>
     </div>
+    <InfoModal
+      v-show="isInfo"
+      @close="closeModal"
+      @refresh="refresh()"
+      :text="text"
+    />
+    <DeleteAccountModal
+      v-show="isDeleteAccount"
+      @close="closeModal"
+      @refresh="refresh()"
+    />
+    <DeleteWebsiteModal
+      v-show="isDeleteWebsite"
+      @close="closeModal"
+      @refresh="refresh()"
+    />
   </main-layout>
 </template>
 
 <script>
 import MainLayout from '@/components/layouts/MainLayout.vue'
 import { AuthService } from '../../services/auth.service.js'
-import { InfoService } from '../../services/info.service.js'
 import { required } from 'vuelidate/lib/validators'
+import InfoModal from '@/components/modals/InfoModal.vue'
+import DeleteAccountModal from '@/components/modals/DeleteAccountModal.vue'
+import DeleteWebsiteModal from '@/components/modals/DeleteWebsiteModal.vue'
 
 export default {
   name: 'Settings',
   title: 'Settings',
   components: {
-    MainLayout
+    MainLayout,
+    InfoModal,
+    DeleteAccountModal,
+    DeleteWebsiteModal
   },
   validations: {
     displayName: {
@@ -62,6 +83,10 @@ export default {
   data () {
     return {
       user: null,
+      text: '',
+      isInfo: false,
+      isDeleteAccount: false,
+      isDeleteWebsite: false,
       displayName: '',
       email: ''
     }
@@ -78,18 +103,24 @@ export default {
       this.$v.$touch()
       if (!this.$v.$invalid) {
         await AuthService.editUser({ displayName: this.displayName }).then((response) => {
-          this.$emit('refresh')
+          this.text = 'Your profile has successfully been updated'
+          this.isInfo = true
         })
       }
     },
-    async deleteWebsite () {
-      await InfoService.deleteWebsite()
+    deleteAccount () {
+      this.isDeleteAccount = true
     },
-    async deleteAccount () {
-      await AuthService.deleteUser()
-      this.$store.dispatch('logout').then(() => {
-        this.$router.push('/login')
-      })
+    deleteWebsite () {
+      this.isDeleteWebsite = true
+    },
+    refresh () {
+      this.closeModal()
+    },
+    closeModal () {
+      this.isInfo = false
+      this.isDeleteAccount = false
+      this.isDeleteWebsite = false
     }
   }
 }
