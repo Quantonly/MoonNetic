@@ -27,7 +27,7 @@ const actions = {
     })
   },
   async getUser ({ commit }) {
-    AuthService.getUser().then(response => {
+    await AuthService.getUser().then(response => {
       if (response) {
         commit('SET_USER', response.data)
       }
@@ -49,6 +49,7 @@ const actions = {
     await AuthService.logout().then(() => {
       commit('CLEAR_AUTH')
     })
+    commit('CLEAR_AUTH')
   },
   async expiredLogout ({ commit }) {
     commit('CLEAR_AUTH')

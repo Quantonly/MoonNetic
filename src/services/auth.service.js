@@ -30,6 +30,12 @@ export class AuthService {
     return http.get('/auth/user')
   }
 
+  static editUser (data) {
+    return http.post('/auth/edituser', {
+      displayName: data.displayName
+    })
+  }
+
   static logout () {
     return http.get('/auth/logout')
   }
