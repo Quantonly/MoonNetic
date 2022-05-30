@@ -55,13 +55,13 @@
           </div>
           <div class="w-full p-6 flex">
             <div class="darkmode-animation dark:bg-darkmode-light flex flex-1 bg-white rounded-3xl overflow-hidden shadow flex-row-reverse">
-              <img src="../assets/images/jentel.jpg" alt="" class="h-72">
+              <img src="../assets/images/tim.jpeg" alt="" class="h-72">
               <div>
                 <div class="mt-5 darkmode-animation dark:text-white font-bold text-xl text-gray-800 px-6">
                   Tim Verbecque
                 </div>
                 <p class="darkmode-animation dark:text-white text-gray-800 text-base px-6 mb-5">
-                  Our fourth member is Tim Verbecque. He started middle school at GITO Nijlen. Here he studied electromechanics for six years. Afterwards he chose for a career switch and started his studies in IT. He had developed an interest in IT during middle school anyways. This is why he started in the IT Factory at Thomas More Geel. Professionally he is very interested in penetration testing. This is also his plan, becoming a penetration tester or cybersecurity consultant. During his leisure, he likes to go to the gym, listen to music or watch some movies. Gaming and running are also some of his hobbies.
+                  Our fourth member is Tim Verbecque. He started middle school at GITHO Nijlen. Here he studied electromechanics for six years. Afterwards he chose for a career switch and started his studies in IT. He had developed an interest in IT during middle school anyways. This is why he started in the IT Factory at Thomas More Geel. Professionally he is very interested in penetration testing. This is also his plan, becoming a penetration tester or cybersecurity consultant. During his leisure, he likes to go to the gym, listen to music or watch some movies. Gaming and running are also some of his hobbies.
                 </p>
               </div>
             </div>

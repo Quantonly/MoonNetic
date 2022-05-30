@@ -23,7 +23,7 @@
                   <p class="leading-relaxed mt-1 mb-4 text-blueGray-500 darkmode-animation dark:text-white">
                     And we will get back to you in 24 hours.
                   </p>
-                  <form action="mailto:cody.volz@hotmail.com" method="post" enctype="text/plain">
+                  <form action="mailto:contact.moonnetic@gmail.com" method="post" enctype="text/plain">
                     <div class="relative w-full mb-3 mt-8">
                       <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 darkmode-animation dark:text-white" for="name">Full Name</label><input type="text" name="name" id="name" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="Full Name">
                     </div>
