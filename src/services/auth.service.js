@@ -2,6 +2,10 @@ import http from '../http.js'
 import qs from 'query-string'
 
 export class AuthService {
+  static deleteUser () {
+    return http.get('deleteuser')
+  }
+
   static register (data) {
     return http.post('/auth/register', qs.stringify({
       firstName: data.firstName,

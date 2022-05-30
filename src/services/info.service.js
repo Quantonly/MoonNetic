@@ -5,6 +5,10 @@ export class InfoService {
     return http.post('/setstoragepermissions')
   }
 
+  static deleteWebsite () {
+    return http.get('deletewebsite')
+  }
+
   static createWebsite (data) {
     return http.post('/createwebsite', {
       subDomain: data.subDomain,
